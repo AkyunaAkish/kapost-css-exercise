@@ -1,17 +1,20 @@
-@import 'extendables';
+@import '../extendables';
 
 @mixin tool_bar(
+  $id,
   $height,
   $width,
   $background-color
   ) {
-    #toolBar {
+    ##{$id} {
       @extend %center;
 
       height: $height;
       width: $width;
       background-color: $background-color;
       display: flex;
+      align-items: center;
+      justify-content: center;
 
       * {
         display: inline;
@@ -25,19 +28,22 @@
   $background-color,
   $font-size,
   $width,
+  $height,
   $font-color,
   $dividecolor,
   $border,
+  $borderradius,
   $customimage
   ) {
     ##{$id} {
-      height: 100%;
+      height: $height;
       width: $width;
       background-color: $background-color;
       font-size: $font-size;
       color: $font-color;
       border: $border;
       border-left: 1px solid $dividecolor;
+      border-radius: $borderradius;
       @if $customimage != none {
         background: url($customimage) no-repeat center;
       }
@@ -52,10 +58,12 @@ $width,
 $font-color,
 $appearance,
 $border ,
-$customimage
+$customimage,
+$leftpadding,
+$height
 ) {
   ##{$id} {
-    height: 100%;
+    height: $height;
     width: $width;
     background-color: $background-color;
     font-size: $font-size;
@@ -64,8 +72,7 @@ $customimage
     background: url($customimage) no-repeat right;
     -webkit-appearance: none;
     -moz-appearance: none;
-    padding-left: 15px;
-    border: 10px solid $background-color;
+    padding-left: $leftpadding;
   }
 }
 
@@ -80,8 +87,11 @@ $customimage,
 $textpadding,
 $boldweight,
 $dividecolor,
-$paddingtop,
-$placeholdercolor
+$placeholdercolor,
+$inputbackground,
+$inputleftpadding,
+$inputheight,
+$inputwidth
 ) {
   ##{$id} {
     min-width: $width;
@@ -90,7 +100,6 @@ $placeholdercolor
     color: $font-color;
     display: inline-block;
     border-left: 1px solid $dividecolor;
-    padding-top: $paddingtop;
 
     p {
       padding: $textpadding;
@@ -103,11 +112,11 @@ $placeholdercolor
     input {
       background: url($customimage) 95% no-repeat;
       border: $inputborder;
-      background-color: white;
-      padding-left: 10px;
+      background-color: $inputbackground;
+      padding-left: $inputleftpadding;
       font-size: $inputfontsize;
-      width: 200px;
-      height: 30px;
+      width: $inputwidth;
+      height: $inputheight;
 
       &::-webkit-input-placeholder {
         color: $placeholdercolor;

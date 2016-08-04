@@ -1,57 +1,67 @@
 @import 'utils/variables';
 
+/*Tool Bar Version 1*/
 @include tool_bar(
+toolBar1,
 50px,
 962px,
 $lightgrey
 );
 
 @include tool_bar_button(
-addNewButton,
+addNewButton1,
 $royalblue,
 1.2em,
 111px,
+100%,
 white,
 none,
 none,
+0%,
 none
 );
 
 @include tool_bar_button(
-expandToolBarButton,
+expandToolBarButton1,
 $lightgrey,
 1.2em,
 52px,
+100%,
 white,
 $lightergrey,
 none,
+0%,
 '/images/bars.png'
 );
 
 @include tool_bar_button(
-funnelButton,
+funnelButton1,
 $lightgrey,
 1.2em,
 52px,
+100%,
 white,
 $lightergrey,
 none,
+0%,
 '/images/funnel.png'
 );
 
 @include tool_bar_select(
-bulkActionsSelect,
+bulkActionsSelect1,
 $lightgrey,
 1.2em,
 146px,
 $darkgrey,
 none,
-none,
-'/images/chevron-down.png'
+10px solid $lightgrey,
+'/images/chevron-down.png',
+10px,
+100%
 );
 
 @include tool_bar_text_input(
-toolBarSearch,
+toolBarSearch1,
 $lightgrey,
 1em,
 603px,
@@ -62,6 +72,88 @@ $darkgrey,
 0 23px 0 225px,
 bolder,
 $lightergrey,
+$darkgrey,
+white,
 10px,
-$darkgrey
+30px,
+200px
+);
+
+/*Tool Bar Version 2*/
+@include tool_bar(
+toolBar2,
+50px,
+962px,
+none
+);
+
+@include tool_bar_button(
+addNewButton2,
+$royalblue,
+1.2em,
+111px,
+32px,
+white,
+none,
+none,
+4%,
+none
+);
+
+@include tool_bar_button(
+expandToolBarButton2,
+none,
+1.2em,
+52px,
+100%,
+white,
+none,
+none,
+0%,
+'/images/bars_white.png'
+);
+
+@include tool_bar_button(
+funnelButton2,
+none,
+1.2em,
+52px,
+100%,
+white,
+none,
+none,
+0%,
+'/images/funnel_white.png'
+);
+
+@include tool_bar_select(
+bulkActionsSelect2,
+none,
+1.2em,
+146px,
+$darkgrey,
+none,
+none,
+'/images/chevron-down.png',
+30px,
+100%
+);
+
+@include tool_bar_text_input(
+toolBarSearch2,
+none,
+1em,
+603px,
+$darkgrey,
+1px solid $darkgrey,
+20px,
+'/images/magnifying-glass.png',
+0 23px 0 225px,
+bolder,
+none,
+$darkgrey,
+white,
+10px,
+30px,
+200px
 );

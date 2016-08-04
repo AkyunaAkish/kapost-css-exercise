@@ -1,7 +1,26 @@
+@import 'utils/variables';
+
 body {
   padding-top: 20px;
 
   * {
     font-family: 'Open Sans Condensed', sans-serif;
   }
+}
+
+@include tool_bar_button(
+toolBarSwitcher,
+$royalblue,
+1.2em,
+200px,
+100%,
+white,
+none,
+none,
+0%,
+none
+);
+
+#toolBarSwitcher {
+  margin-bottom: 10px;
 }
