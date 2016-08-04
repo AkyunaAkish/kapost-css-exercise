@@ -1,0 +1,20 @@
+@import 'utils/variables';
+
+@include grid_table(
+  962px,
+  17px
+);
+
+@include grid_row(
+  $fadedlightblue,
+  $lightgrey,
+  $fadedlightgrey,
+  122px,
+  358px,
+  182px,
+  122px,
+  168px,
+  $lightborder,
+  1px,
+  40px
+);

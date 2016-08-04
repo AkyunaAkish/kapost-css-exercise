@@ -1,11 +1,16 @@
 import React, { Component } from 'react';
+import ToolBar from './ToolBar';
+import Grid from './Grid';
 
 class Layout extends Component {
   render() {
     return (
-      <h1>Hi</h1>
+      <div>
+        <ToolBar />
+        <Grid />
+      </div>
     )
   }
-}
+};
 
 export default Layout;

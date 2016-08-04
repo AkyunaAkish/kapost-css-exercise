@@ -1,0 +1,127 @@
+@import 'extendables';
+
+@mixin tool_bar(
+  $height,
+  $width,
+  $background-color
+  ) {
+    #toolBar {
+      @extend %center;
+
+      height: $height;
+      width: $width;
+      background-color: $background-color;
+      display: flex;
+
+      * {
+        display: inline;
+      }
+
+    }
+}
+
+@mixin tool_bar_button(
+  $id,
+  $background-color,
+  $font-size,
+  $width,
+  $font-color,
+  $dividecolor,
+  $border,
+  $customimage
+  ) {
+    ##{$id} {
+      height: 100%;
+      width: $width;
+      background-color: $background-color;
+      font-size: $font-size;
+      color: $font-color;
+      border: $border;
+      border-left: 1px solid $dividecolor;
+      @if $customimage != none {
+        background: url($customimage) no-repeat center;
+      }
+    }
+}
+
+@mixin tool_bar_select(
+$id,
+$background-color,
+$font-size,
+$width,
+$font-color,
+$appearance,
+$border ,
+$customimage
+) {
+  ##{$id} {
+    height: 100%;
+    width: $width;
+    background-color: $background-color;
+    font-size: $font-size;
+    color: $font-color;
+    border: $border;
+    background: url($customimage) no-repeat right;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    padding-left: 15px;
+    border: 10px solid $background-color;
+  }
+}
+
+@mixin tool_bar_text_input(
+$id,
+$background-color,
+$font-size, $width,
+$font-color,
+$inputborder ,
+$inputfontsize,
+$customimage,
+$textpadding,
+$boldweight,
+$dividecolor,
+$paddingtop,
+$placeholdercolor
+) {
+  ##{$id} {
+    min-width: $width;
+    background-color: $background-color;
+    font-size: $font-size;
+    color: $font-color;
+    display: inline-block;
+    border-left: 1px solid $dividecolor;
+    padding-top: $paddingtop;
+
+    p {
+      padding: $textpadding;
+      span {
+        font-weight: 900;
+        color: black;
+      }
+    }
+
+    input {
+      background: url($customimage) 95% no-repeat;
+      border: $inputborder;
+      background-color: white;
+      padding-left: 10px;
+      font-size: $inputfontsize;
+      width: 200px;
+      height: 30px;
+
+      &::-webkit-input-placeholder {
+        color: $placeholdercolor;
+      }
+      &::-moz-placeholder {
+        color: $placeholdercolor;
+      }
+      &:-ms-input-placeholder {
+        color: $placeholdercolor;
+      }
+      &:-moz-placeholder {
+        color: $placeholdercolor;
+      }
+    }
+
+  }
+}

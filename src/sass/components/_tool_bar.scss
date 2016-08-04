@@ -1,0 +1,67 @@
+@import 'utils/variables';
+
+@include tool_bar(
+50px,
+962px,
+$lightgrey
+);
+
+@include tool_bar_button(
+addNewButton,
+$royalblue,
+1.2em,
+111px,
+white,
+none,
+none,
+none
+);
+
+@include tool_bar_button(
+expandToolBarButton,
+$lightgrey,
+1.2em,
+52px,
+white,
+$lightergrey,
+none,
+'/images/bars.png'
+);
+
+@include tool_bar_button(
+funnelButton,
+$lightgrey,
+1.2em,
+52px,
+white,
+$lightergrey,
+none,
+'/images/funnel.png'
+);
+
+@include tool_bar_select(
+bulkActionsSelect,
+$lightgrey,
+1.2em,
+146px,
+$darkgrey,
+none,
+none,
+'/images/chevron-down.png'
+);
+
+@include tool_bar_text_input(
+toolBarSearch,
+$lightgrey,
+1em,
+603px,
+$darkgrey,
+1px solid $darkgrey,
+20px,
+'/images/magnifying-glass.png',
+0 23px 0 225px,
+bolder,
+$lightergrey,
+10px,
+$darkgrey
+);

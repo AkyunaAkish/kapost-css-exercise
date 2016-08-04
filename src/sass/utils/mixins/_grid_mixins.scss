@@ -1,0 +1,65 @@
+@import 'extendables';
+
+@mixin grid_table(
+  $width,
+  $margintop
+    ) {
+  .gridTable {
+    @extend %center;
+    width: $width;
+    margin-top: $margintop;
+  }
+}
+
+@mixin grid_row(
+  $firstrowcolor,
+  $firstalternatecolor,
+  $secondalternatecolor,
+  $firstcolumnwidth,
+  $secondcolumnwidth,
+  $thirdcolumnwidth,
+  $fourthcolumnwidth,
+  $fifthcolumnwidth,
+  $bordercolor,
+  $borderwidth,
+  $rowheight
+  ) {
+  .gridRow {
+     height: $rowheight;
+
+     &:nth-of-type(even) {
+       background-color: $firstalternatecolor;
+     }
+
+     &:nth-of-type(odd) {
+       background-color: $secondalternatecolor;
+     }
+
+     &:nth-of-type(1) {
+       background-color: $firstrowcolor;
+     }
+
+    .gridRowColumn {
+      display: inline-block;
+      height: $rowheight;
+      border: $borderwidth solid $bordercolor;
+
+      &:nth-of-type(1) {
+        width: $firstcolumnwidth;
+      }
+      &:nth-of-type(2) {
+        width: $secondcolumnwidth;
+      }
+      &:nth-of-type(3) {
+        width: $thirdcolumnwidth;
+      }
+      &:nth-of-type(4) {
+        width: $fourthcolumnwidth;
+      }
+      &:nth-of-type(5) {
+        width: $fifthcolumnwidth;
+      }
+
+    }
+  }
+}
