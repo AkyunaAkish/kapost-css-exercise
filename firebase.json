@@ -1,0 +1,9 @@
+{
+  "firebase": "kapost-css-exercise",
+  "public": "dist",
+  "ignore": [
+    "firebase.json",
+    "**/.*",
+    "**/node_modules/**"
+  ]
+}
