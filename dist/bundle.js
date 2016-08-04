@@ -21484,19 +21484,45 @@
 	var Layout = function (_Component) {
 	  _inherits(Layout, _Component);
 	
-	  function Layout() {
+	  function Layout(props) {
 	    _classCallCheck(this, Layout);
 	
-	    return _possibleConstructorReturn(this, Object.getPrototypeOf(Layout).apply(this, arguments));
+	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Layout).call(this, props));
+	
+	    _this.state = {
+	      toolbarVersion: 1
+	    };
+	    return _this;
 	  }
 	
 	  _createClass(Layout, [{
+	    key: 'handleToolBarSwitch',
+	    value: function handleToolBarSwitch() {
+	      switch (this.state.toolbarVersion) {
+	        case 1:
+	          this.setState({
+	            toolbarVersion: 2
+	          });
+	          break;
+	        case 2:
+	          this.setState({
+	            toolbarVersion: 1
+	          });
+	          break;
+	      }
+	    }
+	  }, {
 	    key: 'render',
 	    value: function render() {
 	      return _react2.default.createElement(
 	        'div',
 	        null,
-	        _react2.default.createElement(_ToolBar2.default, null),
+	        _react2.default.createElement(
+	          'button',
+	          { id: 'toolBarSwitcher', onClick: this.handleToolBarSwitch.bind(this) },
+	          'Switch Tool Bar Version'
+	        ),
+	        this.state.toolbarVersion === 1 ? _react2.default.createElement(_ToolBar2.default, { version: 1 }) : _react2.default.createElement(_ToolBar2.default, { version: 2 }),
 	        _react2.default.createElement(_Grid2.default, null)
 	      );
 	    }
@@ -21543,42 +21569,92 @@
 	  }
 	
 	  _createClass(ToolBar, [{
+	    key: 'getToolBarVersion',
+	    value: function getToolBarVersion(versionId) {
+	      switch (versionId) {
+	        case 1:
+	          return _react2.default.createElement(
+	            'nav',
+	            { id: 'toolBar1' },
+	            _react2.default.createElement(
+	              'button',
+	              { id: 'addNewButton1' },
+	              'Add New'
+	            ),
+	            _react2.default.createElement(
+	              'select',
+	              { id: 'bulkActionsSelect1' },
+	              _react2.default.createElement(
+	                'option',
+	                { value: 'Bulk Actions' },
+	                'Bulk Actions'
+	              )
+	            ),
+	            _react2.default.createElement(
+	              'div',
+	              { id: 'toolBarSearch1' },
+	              _react2.default.createElement(
+	                'p',
+	                null,
+	                'Count per page: ',
+	                _react2.default.createElement(
+	                  'span',
+	                  null,
+	                  '10 items'
+	                )
+	              ),
+	              _react2.default.createElement('input', { type: 'text', placeholder: 'Search' })
+	            ),
+	            _react2.default.createElement('button', { id: 'expandToolBarButton1' }),
+	            _react2.default.createElement('button', { id: 'funnelButton1' })
+	          );
+	          break;
+	        case 2:
+	          return _react2.default.createElement(
+	            'nav',
+	            { id: 'toolBar2' },
+	            _react2.default.createElement(
+	              'button',
+	              { id: 'addNewButton2' },
+	              'Add New'
+	            ),
+	            _react2.default.createElement(
+	              'select',
+	              { id: 'bulkActionsSelect2' },
+	              _react2.default.createElement(
+	                'option',
+	                { value: 'Bulk Actions' },
+	                'Bulk Actions'
+	              )
+	            ),
+	            _react2.default.createElement(
+	              'div',
+	              { id: 'toolBarSearch2' },
+	              _react2.default.createElement(
+	                'p',
+	                null,
+	                'Count per page: ',
+	                _react2.default.createElement(
+	                  'span',
+	                  null,
+	                  '10 items'
+	                )
+	              ),
+	              _react2.default.createElement('input', { type: 'text', placeholder: 'Search' })
+	            ),
+	            _react2.default.createElement('button', { id: 'expandToolBarButton2' }),
+	            _react2.default.createElement('button', { id: 'funnelButton2' })
+	          );
+	          break;
+	      }
+	    }
+	  }, {
 	    key: 'render',
 	    value: function render() {
 	      return _react2.default.createElement(
-	        'nav',
-	        { id: 'toolBar' },
-	        _react2.default.createElement(
-	          'button',
-	          { id: 'addNewButton' },
-	          'Add New'
-	        ),
-	        _react2.default.createElement(
-	          'select',
-	          { id: 'bulkActionsSelect' },
-	          _react2.default.createElement(
-	            'option',
-	            { value: 'Bulk Actions' },
-	            'Bulk Actions'
-	          )
-	        ),
-	        _react2.default.createElement(
-	          'div',
-	          { id: 'toolBarSearch' },
-	          _react2.default.createElement(
-	            'p',
-	            null,
-	            'Count per page: ',
-	            _react2.default.createElement(
-	              'span',
-	              null,
-	              '10 items'
-	            )
-	          ),
-	          _react2.default.createElement('input', { type: 'text', placeholder: 'Search' })
-	        ),
-	        _react2.default.createElement('button', { id: 'expandToolBarButton' }),
-	        _react2.default.createElement('button', { id: 'funnelButton' })
+	        'span',
+	        null,
+	        this.getToolBarVersion(this.props.version)
 	      );
 	    }
 	  }]);
@@ -21693,7 +21769,7 @@
 	
 	
 	// module
-	exports.push([module.id, "#toolBar, .gridTable {\n  margin: 0 auto; }\n\n#toolBar, .gridTable {\n  margin: 0 auto; }\n\nbody {\n  padding-top: 20px; }\n  body * {\n    font-family: 'Open Sans Condensed', sans-serif; }\n\n#toolBar {\n  height: 50px;\n  width: 962px;\n  background-color: #e9e9e9;\n  display: flex; }\n  #toolBar * {\n    display: inline; }\n\n#addNewButton {\n  height: 100%;\n  width: 111px;\n  background-color: #2f80bf;\n  font-size: 1.2em;\n  color: white;\n  border: none;\n  border-left: 1px solid none; }\n\n#expandToolBarButton {\n  height: 100%;\n  width: 52px;\n  background-color: #e9e9e9;\n  font-size: 1.2em;\n  color: white;\n  border: none;\n  border-left: 1px solid lightgray;\n  background: url(\"/images/bars.png\") no-repeat center; }\n\n#funnelButton {\n  height: 100%;\n  width: 52px;\n  background-color: #e9e9e9;\n  font-size: 1.2em;\n  color: white;\n  border: none;\n  border-left: 1px solid lightgray;\n  background: url(\"/images/funnel.png\") no-repeat center; }\n\n#bulkActionsSelect {\n  height: 100%;\n  width: 146px;\n  background-color: #e9e9e9;\n  font-size: 1.2em;\n  color: #676867;\n  border: none;\n  background: url(\"/images/chevron-down.png\") no-repeat right;\n  -webkit-appearance: none;\n  -moz-appearance: none;\n  padding-left: 15px;\n  border: 10px solid #e9e9e9; }\n\n#toolBarSearch {\n  min-width: 603px;\n  background-color: #e9e9e9;\n  font-size: 1em;\n  color: #676867;\n  display: inline-block;\n  border-left: 1px solid lightgray;\n  padding-top: 10px; }\n  #toolBarSearch p {\n    padding: 0 23px 0 225px; }\n    #toolBarSearch p span {\n      font-weight: 900;\n      color: black; }\n  #toolBarSearch input {\n    background: url(\"/images/magnifying-glass.png\") 95% no-repeat;\n    border: 1px solid #676867;\n    background-color: white;\n    padding-left: 10px;\n    font-size: 20px;\n    width: 200px;\n    height: 30px; }\n    #toolBarSearch input::-webkit-input-placeholder {\n      color: #676867; }\n    #toolBarSearch input::-moz-placeholder {\n      color: #676867; }\n    #toolBarSearch input:-ms-input-placeholder {\n      color: #676867; }\n    #toolBarSearch input:-moz-placeholder {\n      color: #676867; }\n\n.gridTable {\n  width: 962px;\n  margin-top: 17px; }\n\n.gridRow {\n  height: 40px; }\n  .gridRow:nth-of-type(even) {\n    background-color: #e9e9e9; }\n  .gridRow:nth-of-type(odd) {\n    background-color: #d9d9d8; }\n  .gridRow:nth-of-type(1) {\n    background-color: #b5c4d3; }\n  .gridRow .gridRowColumn {\n    display: inline-block;\n    height: 40px;\n    border: 1px solid #f6f7f8; }\n    .gridRow .gridRowColumn:nth-of-type(1) {\n      width: 122px; }\n    .gridRow .gridRowColumn:nth-of-type(2) {\n      width: 358px; }\n    .gridRow .gridRowColumn:nth-of-type(3) {\n      width: 182px; }\n    .gridRow .gridRowColumn:nth-of-type(4) {\n      width: 122px; }\n    .gridRow .gridRowColumn:nth-of-type(5) {\n      width: 168px; }\n", ""]);
+	exports.push([module.id, "#toolBar1, #toolBar2, .gridTable {\n  margin: 0 auto; }\n\n#toolBar1, #toolBar2, .gridTable {\n  margin: 0 auto; }\n\nbody {\n  padding-top: 20px; }\n  body * {\n    font-family: 'Open Sans Condensed', sans-serif; }\n\n#toolBarSwitcher {\n  height: 100%;\n  width: 200px;\n  background-color: #2f80bf;\n  font-size: 1.2em;\n  color: white;\n  border: none;\n  border-left: 1px solid none;\n  border-radius: 0%; }\n\n#toolBarSwitcher {\n  margin-bottom: 10px; }\n\n/*Tool Bar Version 1*/\n#toolBar1 {\n  height: 50px;\n  width: 962px;\n  background-color: #e9e9e9;\n  display: flex;\n  align-items: center;\n  justify-content: center; }\n  #toolBar1 * {\n    display: inline; }\n\n#addNewButton1 {\n  height: 100%;\n  width: 111px;\n  background-color: #2f80bf;\n  font-size: 1.2em;\n  color: white;\n  border: none;\n  border-left: 1px solid none;\n  border-radius: 0%; }\n\n#expandToolBarButton1 {\n  height: 100%;\n  width: 52px;\n  background-color: #e9e9e9;\n  font-size: 1.2em;\n  color: white;\n  border: none;\n  border-left: 1px solid lightgray;\n  border-radius: 0%;\n  background: url(\"/images/bars.png\") no-repeat center; }\n\n#funnelButton1 {\n  height: 100%;\n  width: 52px;\n  background-color: #e9e9e9;\n  font-size: 1.2em;\n  color: white;\n  border: none;\n  border-left: 1px solid lightgray;\n  border-radius: 0%;\n  background: url(\"/images/funnel.png\") no-repeat center; }\n\n#bulkActionsSelect1 {\n  height: 100%;\n  width: 146px;\n  background-color: #e9e9e9;\n  font-size: 1.2em;\n  color: #676867;\n  border: 10px solid #e9e9e9;\n  background: url(\"/images/chevron-down.png\") no-repeat right;\n  -webkit-appearance: none;\n  -moz-appearance: none;\n  padding-left: 10px; }\n\n#toolBarSearch1 {\n  min-width: 603px;\n  background-color: #e9e9e9;\n  font-size: 1em;\n  color: #676867;\n  display: inline-block;\n  border-left: 1px solid lightgray; }\n  #toolBarSearch1 p {\n    padding: 0 23px 0 225px; }\n    #toolBarSearch1 p span {\n      font-weight: 900;\n      color: black; }\n  #toolBarSearch1 input {\n    background: url(\"/images/magnifying-glass.png\") 95% no-repeat;\n    border: 1px solid #676867;\n    background-color: white;\n    padding-left: 10px;\n    font-size: 20px;\n    width: 200px;\n    height: 30px; }\n    #toolBarSearch1 input::-webkit-input-placeholder {\n      color: #676867; }\n    #toolBarSearch1 input::-moz-placeholder {\n      color: #676867; }\n    #toolBarSearch1 input:-ms-input-placeholder {\n      color: #676867; }\n    #toolBarSearch1 input:-moz-placeholder {\n      color: #676867; }\n\n/*Tool Bar Version 2*/\n#toolBar2 {\n  height: 50px;\n  width: 962px;\n  background-color: none;\n  display: flex;\n  align-items: center;\n  justify-content: center; }\n  #toolBar2 * {\n    display: inline; }\n\n#addNewButton2 {\n  height: 32px;\n  width: 111px;\n  background-color: #2f80bf;\n  font-size: 1.2em;\n  color: white;\n  border: none;\n  border-left: 1px solid none;\n  border-radius: 4%; }\n\n#expandToolBarButton2 {\n  height: 100%;\n  width: 52px;\n  background-color: none;\n  font-size: 1.2em;\n  color: white;\n  border: none;\n  border-left: 1px solid none;\n  border-radius: 0%;\n  background: url(\"/images/bars_white.png\") no-repeat center; }\n\n#funnelButton2 {\n  height: 100%;\n  width: 52px;\n  background-color: none;\n  font-size: 1.2em;\n  color: white;\n  border: none;\n  border-left: 1px solid none;\n  border-radius: 0%;\n  background: url(\"/images/funnel_white.png\") no-repeat center; }\n\n#bulkActionsSelect2 {\n  height: 100%;\n  width: 146px;\n  background-color: none;\n  font-size: 1.2em;\n  color: #676867;\n  border: none;\n  background: url(\"/images/chevron-down.png\") no-repeat right;\n  -webkit-appearance: none;\n  -moz-appearance: none;\n  padding-left: 30px; }\n\n#toolBarSearch2 {\n  min-width: 603px;\n  background-color: none;\n  font-size: 1em;\n  color: #676867;\n  display: inline-block;\n  border-left: 1px solid none; }\n  #toolBarSearch2 p {\n    padding: 0 23px 0 225px; }\n    #toolBarSearch2 p span {\n      font-weight: 900;\n      color: black; }\n  #toolBarSearch2 input {\n    background: url(\"/images/magnifying-glass.png\") 95% no-repeat;\n    border: 1px solid #676867;\n    background-color: white;\n    padding-left: 10px;\n    font-size: 20px;\n    width: 200px;\n    height: 30px; }\n    #toolBarSearch2 input::-webkit-input-placeholder {\n      color: #676867; }\n    #toolBarSearch2 input::-moz-placeholder {\n      color: #676867; }\n    #toolBarSearch2 input:-ms-input-placeholder {\n      color: #676867; }\n    #toolBarSearch2 input:-moz-placeholder {\n      color: #676867; }\n\n.gridTable {\n  width: 962px;\n  margin-top: 17px; }\n\n.gridRow {\n  height: 40px; }\n  .gridRow:nth-of-type(even) {\n    background-color: #e9e9e9; }\n  .gridRow:nth-of-type(odd) {\n    background-color: #d9d9d8; }\n  .gridRow:nth-of-type(1) {\n    background-color: #b5c4d3; }\n  .gridRow .gridRowColumn {\n    display: inline-block;\n    height: 40px;\n    border: 1px solid #f6f7f8; }\n    .gridRow .gridRowColumn:nth-of-type(1) {\n      width: 122px; }\n    .gridRow .gridRowColumn:nth-of-type(2) {\n      width: 358px; }\n    .gridRow .gridRowColumn:nth-of-type(3) {\n      width: 182px; }\n    .gridRow .gridRowColumn:nth-of-type(4) {\n      width: 122px; }\n    .gridRow .gridRowColumn:nth-of-type(5) {\n      width: 168px; }\n", ""]);
 	
 	// exports
 
